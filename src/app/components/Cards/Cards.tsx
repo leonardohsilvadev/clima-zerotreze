@@ -1,6 +1,6 @@
 'use client'
 import { SunIcon } from '@heroicons/react/24/solid'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface CardProps {
   id: number;
@@ -20,8 +20,16 @@ const MOCKED_CARDS: CardProps[] = [
   { id: 6, day: 'Domingo', date:'16/04', hour: '11:42', weather: '16' },
 ];
 
-function Cards() {
+const CITY = "Santos";
+
+export default async function Cards() {
   const [cards, setCards] = useState<CardProps[]>(MOCKED_CARDS);
+  
+  const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_API_KEY}&q=${CITY}&days=7&aqi=no&alerts=no`);
+
+  const data = response.json();
+
+  console.log('data: ', data);
 
   return (
     <div className="flex lg:flex-row flex-col py-10">
@@ -40,5 +48,3 @@ function Cards() {
     </div>
   )
 }
-
-export default Cards
