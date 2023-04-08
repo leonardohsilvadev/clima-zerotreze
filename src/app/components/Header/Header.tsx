@@ -17,7 +17,7 @@ function Header() {
   }
 
   return (
-    <header className=" bg-zinc-800 p-10 md:flex items-center">
+    <header className="bg-gradient-to-r from-zinc-900 to-zinc-800 p-10 md:flex items-center">
       <div className="flex flex-row items-center">
         <SunIcon className='h-24 w-24 p-0 text-zinc-300/20' />
         <h1 className="text-white text-3xl">Clima ZeroTreze</h1>
