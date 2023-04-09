@@ -5,12 +5,14 @@ interface StateProps {
   current: any;
   location: any;
   forecast: any;
+  selectedDay: any;
 }
 
 const initialState: StateProps = {
   current: null,
   location: null,
-  forecast: null
+  forecast: null,
+  selectedDay: null
 }
 
 export const getWeatherDataAsync: any = createAsyncThunk(
@@ -32,10 +34,16 @@ export const weatherSlice = createSlice({
         current: payload.current,
         forecast: payload.forecast
       }
+    },
+    handleSelectForecastDay(state, { payload }) {
+      return {
+        ...state,
+        selectedDay: payload
+      }
     }
   }
 })
 
-export const { getWeatherData } = weatherSlice.actions
+export const { getWeatherData, handleSelectForecastDay } = weatherSlice.actions
 
 export default weatherSlice.reducer
