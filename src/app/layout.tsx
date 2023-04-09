@@ -1,5 +1,6 @@
 import { Header } from './components'
 import './globals.css'
+import { Providers } from './store/provider'
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,7 +17,9 @@ export default function RootLayout({
       <body className="flex bg-[#F7FBFF] h-screen">
         <main className="w-full mx-auto overflow-y-auto">
           <Header />
-          {children}
+          <Providers>
+            {children}
+          </Providers>
         </main>
         </body>
     </html>
