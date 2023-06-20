@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { GET } from '../api/weather/route';
+import { createSlice } from '@reduxjs/toolkit'
 
 interface StateProps {
   current: any;
@@ -14,14 +13,6 @@ const initialState: StateProps = {
   forecast: null,
   selectedDay: null
 }
-
-export const getWeatherDataAsync: any = createAsyncThunk(
-  'weather/getWeatherData',
-  async () => {
-    const response = await GET()
-    return response
-  }
-)
 
 export const weatherSlice = createSlice({
   name: 'weather',
