@@ -36,7 +36,7 @@ export default function Cards() {
         {forecast && forecast.forecastday?.map((weather: any) => (
           <div
             key={`card-${weather.date}`}
-            className="bg-gradient-to-r from-sky-200 to-sky-300 w-full h-48 rounded-3xl flex flex-col justify-center items-center mr-4 md:mb-10 sm:mb-10 cursor-pointer"
+            className="bg-gradient-to-r from-sky-200 to-sky-300 w-full h-48 rounded-3xl flex flex-col justify-center items-center mr-4 mb-10 cursor-pointer"
             onClick={() => handleClickCard(weather)}
           >
           <div className="flex flex-col">

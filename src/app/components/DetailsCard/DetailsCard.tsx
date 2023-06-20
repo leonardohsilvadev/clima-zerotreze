@@ -1,5 +1,6 @@
 'use client'
 import { RootState } from '@/app/store'
+import { switchCondition } from '@/app/utils/switchCondition'
 import { SunIcon } from '@heroicons/react/24/solid'
 import { format } from 'date-fns'
 import React from 'react'
@@ -7,27 +8,12 @@ import { useSelector } from 'react-redux'
 
 function DetailsCard() {
   const { location, current, forecast, selectedDay } = useSelector(({ weather }: RootState) => weather)
-
-  const switchCondition = (condition: any) => {
-    switch(condition) {
-      case 'Light rain shower':
-        return 'Chuva Leve'
-      case 'Patchy rain possible':
-        return 'Chuva irregular'
-      case 'Overcast':
-        return 'Obscurecido'
-      case 'Cloudy':
-        return 'Nublado'
-      default:
-        return condition
-    }
-  }
-
-  console.log(selectedDay)
-
+  const selectedDate = selectedDay && format(new Date(selectedDay?.date), 'dd/MM');
+  
   return (
+    selectedDay ? (
     <div className="flex flex-col p-10 bg-zinc-800 rounded-2xl">
-      <h3 className="text-zinc-200 text-2xl font-bold pb-4">Mais detalhes de {location?.name} em {selectedDay && format(new Date(selectedDay?.date), 'dd/MM')}:</h3>
+      <h3 className="text-zinc-200 text-2xl font-bold pb-4">{`Mais detalhes de ${location?.name} em ${selectedDate}:`}</h3>
 
       <div className="flex flex-row flex-wrap items-center justify-center">
       {selectedDay && selectedDay.hour?.map((weather: any) => (
@@ -48,6 +34,9 @@ function DetailsCard() {
       ))}
       </div>
     </div>
+    ) : (
+      <h3 className="text-zinc-200 text-2xl font-bold pb-4">Selecione um dia para mais detalhes...</h3>
+    )
   )
 }
 
